@@ -1,0 +1,14 @@
+{
+  "name": "gurkhali-rental-services",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix llc-backend && npm install --prefix llc-frontend",
+    "dev": "node scripts/dev.js",
+    "build": "npm run build --prefix llc-backend && npm run build --prefix llc-frontend",
+    "backend:dev": "npm run start:dev --prefix llc-backend",
+    "frontend:dev": "npm run dev --prefix llc-frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
