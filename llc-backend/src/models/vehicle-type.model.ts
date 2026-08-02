@@ -43,6 +43,18 @@ const vehicleTypeSchema = new Schema(
       trim: true,
       maxLength: MAX_VEHICLE_MEDIA_LINK,
     },
+    driverName: {
+      type: String,
+      required: false,
+      trim: true,
+      maxLength: MAX_VEHICLE_NAME_LENGTH,
+    },
+    driverPhoto: {
+      type: String,
+      required: false,
+      trim: true,
+      maxLength: MAX_VEHICLE_MEDIA_LINK,
+    },
     vehiclePlateNumber: {
       type: String,
       required: true,

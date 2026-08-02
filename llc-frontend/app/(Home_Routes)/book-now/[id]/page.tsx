@@ -488,6 +488,23 @@ export default function BookNow({
                 </span>
               </div>
             </div>
+            {vehicle.driverName && (
+              <div className="flex items-center gap-2 mb-4">
+                {vehicle.driverPhoto && (
+                  <Image
+                    src={vehicle.driverPhoto}
+                    alt={vehicle.driverName}
+                    width={32}
+                    height={32}
+                    className="h-8 w-8 rounded-full object-cover"
+                  />
+                )}
+                <span className="text-sm text-gray-600">
+                  Chauffeur:{" "}
+                  <span className="font-medium">{vehicle.driverName}</span>
+                </span>
+              </div>
+            )}
             <button
               onClick={() => {
                 if (searchParams.get("type") === "edit") {
@@ -878,6 +895,26 @@ export default function BookNow({
                 className="w-full h-48 max-w-xs object-cover rounded-lg"
               />
             </div>
+
+            {bookingState.vehicle?.driverName && (
+              <div className="sm:col-span-2 flex items-center gap-3 rounded-lg bg-gray-50 p-3">
+                {bookingState.vehicle?.driverPhoto && (
+                  <Image
+                    src={bookingState.vehicle.driverPhoto}
+                    alt={`${bookingState.vehicle.driverName} photo`}
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 rounded-full object-cover"
+                  />
+                )}
+                <div>
+                  <p className="text-xs text-gray-500">Your Chauffeur</p>
+                  <p className="font-semibold">
+                    {bookingState.vehicle.driverName}
+                  </p>
+                </div>
+              </div>
+            )}
 
             <p>
               <strong>Category:</strong> {bookingState.vehicle?.category}

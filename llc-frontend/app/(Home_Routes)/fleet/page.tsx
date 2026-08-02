@@ -218,6 +218,25 @@ export default function Fleet() {
                         </span>
                       </div>
                     </div>
+                    {vehicle.driverName && (
+                      <div className="flex items-center gap-2">
+                        {vehicle.driverPhoto && (
+                          <Image
+                            height={32}
+                            width={32}
+                            src={vehicle.driverPhoto}
+                            alt={vehicle.driverName}
+                            className="h-8 w-8 rounded-full object-cover"
+                          />
+                        )}
+                        <span className="text-sm text-gray-600">
+                          Chauffeur:{" "}
+                          <span className="font-medium">
+                            {vehicle.driverName}
+                          </span>
+                        </span>
+                      </div>
+                    )}
                     <div className="flex md:flex-row flex-col md:space-y-0 space-y-4 space-x-2 items-start justify-between">
                       <p className="text-gray-600">{vehicle.description}</p>
 

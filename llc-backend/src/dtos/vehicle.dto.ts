@@ -20,6 +20,8 @@ export const createVehicleTypeSchema = createValidationSchema({
       .max(MAX_VEHICLE_DESCRIPTION_LENGTH)
       .optional(),
     photo: z.string().trim().max(MAX_VEHICLE_MEDIA_LINK).optional(),
+    driverName: z.string().trim().max(MAX_VEHICLE_NAME_LENGTH).optional(),
+    driverPhoto: z.string().trim().max(MAX_VEHICLE_MEDIA_LINK).optional(),
     vehiclePlateNumber: z
       .string()
       .trim()
@@ -57,6 +59,8 @@ export const updateVehicleTypeSchema = createValidationSchema({
       .max(MAX_VEHICLE_DESCRIPTION_LENGTH)
       .optional(),
     photo: z.string().trim().max(MAX_VEHICLE_MEDIA_LINK).optional(),
+    driverName: z.string().trim().max(MAX_VEHICLE_NAME_LENGTH).optional(),
+    driverPhoto: z.string().trim().max(MAX_VEHICLE_MEDIA_LINK).optional(),
     vehiclePlateNumber: z
       .string()
       .trim()

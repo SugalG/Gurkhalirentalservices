@@ -48,6 +48,8 @@ export interface Vehicle {
   name: string;
   description: string;
   photo: string;
+  driverName?: string;
+  driverPhoto?: string;
   vehiclePlateNumber: string;
   category: string;
   features: string[];
@@ -68,6 +70,8 @@ export interface FinalVehicleType {
   name: string;
   description: string;
   photo: string;
+  driverName?: string;
+  driverPhoto?: string;
   vehiclePlateNumber: string;
   category: string;
   features: string[];

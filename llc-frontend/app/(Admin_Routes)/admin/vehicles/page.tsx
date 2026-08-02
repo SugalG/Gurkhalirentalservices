@@ -88,6 +88,8 @@ export default function VehiclesPage() {
       message: "Description must be at least 10 characters.",
     }),
     photo: z.any(),
+    driverName: z.string().optional(),
+    driverPhoto: z.any(),
     vehiclePlateNumber: z.string().min(6, {
       message: "Plate number must be at least 6 characters.",
     }),
@@ -122,6 +124,8 @@ export default function VehiclesPage() {
     category: "economy",
     description: "",
     photo: null,
+    driverName: "",
+    driverPhoto: null,
     vehiclePlateNumber: "",
     features: "",
     maxOccupancy: 0,
@@ -150,7 +154,9 @@ export default function VehiclesPage() {
       fuelType: vehicle.fuelType as "electric" | "gas",
       distancePriceMultiplierBeyond:
         vehicle.distancePriceMultiplierBeyond ?? 5.5,
+      driverName: vehicle.driverName ?? "",
       photo: null,
+      driverPhoto: null,
     });
     setTags([...vehicle.features]);
     setIsEditing(true);
@@ -188,6 +194,14 @@ export default function VehiclesPage() {
       } else {
         fileUrl = selectedVehicle?.photo || "";
       }
+      let driverPhotoUrl = "";
+      if (values.driverPhoto) {
+        const { filePath } = await uploadMedia(values.driverPhoto[0]);
+        if (!filePath) return toast.error("Failed to upload driver photo");
+        driverPhotoUrl = filePath;
+      } else {
+        driverPhotoUrl = selectedVehicle?.driverPhoto || "";
+      }
       const { _id } = await updateVehicle(
         data?.user.sessionToken!,
         selectedVehicle?._id!,
@@ -195,6 +209,8 @@ export default function VehiclesPage() {
           name: newVehicle.name,
           description: newVehicle.description,
           photo: fileUrl,
+          driverName: newVehicle.driverName,
+          driverPhoto: driverPhotoUrl,
           vehiclePlateNumber: newVehicle.vehiclePlateNumber,
           category: newVehicle.category,
           features: newVehicle.features,
@@ -231,10 +247,19 @@ export default function VehiclesPage() {
         fileUrl = filePath;
       }
 
+      let driverPhotoUrl = "";
+      if (values.driverPhoto) {
+        const { filePath } = await uploadMedia(values.driverPhoto[0]);
+        if (!filePath) return toast.error("Failed to upload driver photo");
+        driverPhotoUrl = filePath;
+      }
+
       const { _id } = await addVehicle(data?.user.sessionToken!, {
         name: newVehicle.name,
         description: newVehicle.description,
         photo: fileUrl,
+        driverName: newVehicle.driverName,
+        driverPhoto: driverPhotoUrl,
         vehiclePlateNumber: newVehicle.vehiclePlateNumber,
         category: newVehicle.category,
         features: newVehicle.features,
@@ -594,6 +619,53 @@ export default function VehiclesPage() {
                       )}
                     />
                   </div>
+                  {/* Driver */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="driverName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Driver Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g. John Smith" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="driverPhoto"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Driver Photo</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => field.onChange(e.target.files)}
+                            />
+                          </FormControl>
+                          {isEditing && selectedVehicle?.driverPhoto && (
+                            <div className="mt-2">
+                              <p className="text-xs text-muted-foreground mb-1">
+                                Current driver photo
+                              </p>
+                              <Image
+                                src={selectedVehicle.driverPhoto}
+                                alt={`${selectedVehicle.driverName ?? "Driver"} photo`}
+                                width={64}
+                                height={64}
+                                className="h-16 w-16 object-cover rounded-full"
+                              />
+                            </div>
+                          )}
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                   {/* Availability and Date */}
                   <div className="grid grid-cols-2 gap-4">
                     <FormField
@@ -904,6 +976,21 @@ export default function VehiclesPage() {
               <p>
                 <strong>Category:</strong> {selectedVehicle.category}
               </p>
+              <p>
+                <strong>Driver:</strong> {selectedVehicle.driverName || "—"}
+              </p>
+              {selectedVehicle.driverPhoto && (
+                <div>
+                  <strong>Driver Photo:</strong>
+                  <Image
+                    src={selectedVehicle.driverPhoto}
+                    alt={`${selectedVehicle.driverName ?? "Driver"} photo`}
+                    width={64}
+                    height={64}
+                    className="h-16 w-16 object-cover rounded-full mt-1"
+                  />
+                </div>
+              )}
               <p className="sm:col-span-2">
                 <strong>Description:</strong> {selectedVehicle.description}
               </p>
