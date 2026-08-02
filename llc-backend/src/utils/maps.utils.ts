@@ -80,7 +80,7 @@ export const getDistanceFromGoogleMaps = async (
         ? Number((durationSeconds / 3600).toFixed(3))
         : 0;
       const distanceMi = route.distanceMeters
-        ? Number((((route.distanceMeters ?? 0) / 1000) * 0.62).toFixed(3))
+        ? Number(((route.distanceMeters ?? 0) / 1609.344).toFixed(3))
         : 0;
 
       return {
