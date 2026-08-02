@@ -609,7 +609,20 @@ export default function VehiclesPage() {
                               onChange={(e) => field.onChange(e.target.files)}
                             />
                           </FormControl>
-                          {selectedVehicle?.photo}
+                          {isEditing && selectedVehicle?.photo && (
+                            <div className="mt-2">
+                              <p className="text-xs text-muted-foreground mb-1">
+                                Current image
+                              </p>
+                              <Image
+                                src={selectedVehicle.photo}
+                                alt={`${selectedVehicle.name} current photo`}
+                                width={64}
+                                height={64}
+                                className="h-16 w-16 object-cover rounded-md"
+                              />
+                            </div>
+                          )}
                           <FormMessage />
                         </FormItem>
                       )}
