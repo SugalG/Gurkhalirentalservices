@@ -494,9 +494,9 @@ export default function BookNow({
                   <Image
                     src={vehicle.driverPhoto}
                     alt={vehicle.driverName}
-                    width={32}
-                    height={32}
-                    className="h-8 w-8 rounded-full object-cover"
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 rounded-full object-cover"
                   />
                 )}
                 <span className="text-sm text-gray-600">
@@ -902,9 +902,9 @@ export default function BookNow({
                   <Image
                     src={bookingState.vehicle.driverPhoto}
                     alt={`${bookingState.vehicle.driverName} photo`}
-                    width={56}
-                    height={56}
-                    className="h-14 w-14 rounded-full object-cover"
+                    width={96}
+                    height={96}
+                    className="h-24 w-24 rounded-full object-cover"
                   />
                 )}
                 <div>

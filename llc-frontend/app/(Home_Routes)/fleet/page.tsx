@@ -222,11 +222,11 @@ export default function Fleet() {
                       <div className="flex items-center gap-2">
                         {vehicle.driverPhoto && (
                           <Image
-                            height={32}
-                            width={32}
+                            height={48}
+                            width={48}
                             src={vehicle.driverPhoto}
                             alt={vehicle.driverName}
-                            className="h-8 w-8 rounded-full object-cover"
+                            className="h-12 w-12 rounded-full object-cover"
                           />
                         )}
                         <span className="text-sm text-gray-600">
