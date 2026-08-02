@@ -55,6 +55,7 @@ export interface Vehicle {
   maxStorageCapacityLtr: number;
   maxEstimatedDistanceCoverageKm: number;
   distancePriceMultiplier: number;
+  distancePriceMultiplierBeyond: number;
   hourlyPriceMultiplier: number;
   maxSuitcaseCapacity: number;
   fuelType: string;
@@ -71,6 +72,7 @@ export interface FinalVehicleType {
   category: string;
   features: string[];
   distancePriceMultiplier: number;
+  distancePriceMultiplierBeyond: number;
   hourlyPriceMultiplier: number;
   maxOccupancy: number;
   maxStorageCapacityLtr: number;

@@ -1,19 +1,31 @@
 import { Types } from "mongoose";
+import { DISTANCE_TIER_BREAKPOINT_MI } from "@/constants";
 import { AppError } from "@/middlewares";
 import { PricingMode } from "@/models";
 import { getVehicleType } from "@/services";
 
-// todo [aayush]: consult with the client for the price formula
 export function calculateCostByHour(hour: number, priceMultiplier: number) {
   return Number((hour * priceMultiplier).toFixed(2));
 }
 
-// todo [aayush]: consult with the client for the price formula
+/**
+ * Graduated (marginal) distance fare:
+ *   - miles up to `breakpointMi` are billed at `baseRatePerMi`
+ *   - miles beyond `breakpointMi` are billed at `beyondRatePerMi`
+ * If a vehicle has no beyond-rate configured, the base rate applies to all
+ * miles (single-rate behaviour, matching pre-tier vehicles).
+ */
 export function calculateCostByDistanceMi(
   distanceMi: number,
-  priceMultiplier: number
+  baseRatePerMi: number,
+  beyondRatePerMi?: number | null,
+  breakpointMi: number = DISTANCE_TIER_BREAKPOINT_MI
 ) {
-  return Number((distanceMi * priceMultiplier).toFixed(2));
+  const beyondRate = beyondRatePerMi ?? baseRatePerMi;
+  const milesInBase = Math.min(distanceMi, breakpointMi);
+  const milesBeyond = Math.max(0, distanceMi - breakpointMi);
+  const cost = milesInBase * baseRatePerMi + milesBeyond * beyondRate;
+  return Number(cost.toFixed(2));
 }
 
 export async function calculateEstimatedFare<
@@ -33,7 +45,8 @@ export async function calculateEstimatedFare<
       if (distanceMi == null) throw new AppError(`Distance is required`, 400);
       return calculateCostByDistanceMi(
         distanceMi,
-        vehicleType.distancePriceMultiplier
+        vehicleType.distancePriceMultiplier,
+        vehicleType.distancePriceMultiplierBeyond
       );
     case PricingMode.Hourly:
       if (durationHourly == null)

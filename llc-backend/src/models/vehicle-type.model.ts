@@ -85,6 +85,15 @@ const vehicleTypeSchema = new Schema(
       required: true,
       min: 0,
     },
+    // Extended per-mile rate applied to miles beyond DISTANCE_TIER_BREAKPOINT_MI.
+    // Optional so existing vehicles keep working; the fare calc falls back to
+    // distancePriceMultiplier when this is unset (single-rate behaviour).
+    distancePriceMultiplierBeyond: {
+      type: Number,
+      required: false,
+      min: 0,
+      default: undefined,
+    },
     hourlyPriceMultiplier: {
       type: Number,
       required: true,

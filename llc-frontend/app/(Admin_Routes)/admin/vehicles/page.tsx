@@ -105,7 +105,10 @@ export default function VehiclesPage() {
       message: "Max estimated distance coverage must be at least 1 km.",
     }),
     distancePriceMultiplier: z.coerce.number().min(0, {
-      message: "Distance price multiplier must be a positive number.",
+      message: "Rate up to 50 mi must be a positive number.",
+    }),
+    distancePriceMultiplierBeyond: z.coerce.number().min(0, {
+      message: "Rate after 50 mi must be a positive number.",
     }),
     hourlyPriceMultiplier: z.coerce.number().min(0, {
       message: "Hourly price multiplier must be a positive number.",
@@ -125,7 +128,8 @@ export default function VehiclesPage() {
     maxStorageCapacityLtr: 0,
     maxSuitcaseCapacity: 0,
     maxEstimatedDistanceCoverageKm: 0,
-    distancePriceMultiplier: 0,
+    distancePriceMultiplier: 4.5,
+    distancePriceMultiplierBeyond: 5.5,
     hourlyPriceMultiplier: 0,
     fuelType: "electric",
     availabilityStatus: true,
@@ -144,6 +148,8 @@ export default function VehiclesPage() {
       category: vehicle.category as "economy" | "luxury",
       features: "",
       fuelType: vehicle.fuelType as "electric" | "gas",
+      distancePriceMultiplierBeyond:
+        vehicle.distancePriceMultiplierBeyond ?? 5.5,
       photo: null,
     });
     setTags([...vehicle.features]);
@@ -193,6 +199,8 @@ export default function VehiclesPage() {
           category: newVehicle.category,
           features: newVehicle.features,
           distancePriceMultiplier: newVehicle.distancePriceMultiplier,
+          distancePriceMultiplierBeyond:
+            newVehicle.distancePriceMultiplierBeyond,
           hourlyPriceMultiplier: newVehicle.hourlyPriceMultiplier,
           maxOccupancy: newVehicle.maxOccupancy,
           maxStorageCapacityLtr: newVehicle.maxStorageCapacityLtr,
@@ -231,6 +239,7 @@ export default function VehiclesPage() {
         category: newVehicle.category,
         features: newVehicle.features,
         distancePriceMultiplier: newVehicle.distancePriceMultiplier,
+        distancePriceMultiplierBeyond: newVehicle.distancePriceMultiplierBeyond,
         hourlyPriceMultiplier: newVehicle.hourlyPriceMultiplier,
         maxOccupancy: newVehicle.maxOccupancy,
         maxStorageCapacityLtr: newVehicle.maxStorageCapacityLtr,
@@ -522,9 +531,24 @@ export default function VehiclesPage() {
                       name="distancePriceMultiplier"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Distance Price Multiplier ($)</FormLabel>
+                          <FormLabel>Distance Rate – up to 50 mi ($/mile)</FormLabel>
                           <FormControl>
-                            <Input type="number" placeholder="2.5" {...field} />
+                            <Input type="number" placeholder="4.5" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="distancePriceMultiplierBeyond"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Distance Rate – after 50 mi ($/mile)</FormLabel>
+                          <FormControl>
+                            <Input type="number" placeholder="5.5" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -893,8 +917,14 @@ export default function VehiclesPage() {
                 {selectedVehicle.maxEstimatedDistanceCoverageKm}
               </p>
               <p>
-                <strong>Price Multiplier:</strong>{" "}
-                {selectedVehicle.distancePriceMultiplier}
+                <strong>Distance Rate (up to 50 mi):</strong> ${" "}
+                {selectedVehicle.distancePriceMultiplier}/mi
+              </p>
+              <p>
+                <strong>Distance Rate (after 50 mi):</strong> ${" "}
+                {selectedVehicle.distancePriceMultiplierBeyond ??
+                  selectedVehicle.distancePriceMultiplier}
+                /mi
               </p>
               <p>
                 <strong>Hourly Rate:</strong>{" "}

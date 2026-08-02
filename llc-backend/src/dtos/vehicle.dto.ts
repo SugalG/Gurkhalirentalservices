@@ -30,6 +30,7 @@ export const createVehicleTypeSchema = createValidationSchema({
       .array(z.string().trim().max(MAX_VEHICLE_FEATURES_LENGTH))
       .optional(),
     distancePriceMultiplier: z.number().min(0),
+    distancePriceMultiplierBeyond: z.number().min(0),
     hourlyPriceMultiplier: z.number().min(0),
     maxOccupancy: z.number().min(0),
     maxStorageCapacityLtr: z.number().min(0).optional(),
@@ -69,6 +70,7 @@ export const updateVehicleTypeSchema = createValidationSchema({
       .array(z.string().trim().max(MAX_VEHICLE_FEATURES_LENGTH))
       .optional(),
     distancePriceMultiplier: z.number().min(0).optional(),
+    distancePriceMultiplierBeyond: z.number().min(0).optional(),
     hourlyPriceMultiplier: z.number().min(0).optional(),
     maxOccupancy: z.number().min(0).optional(),
     maxStorageCapacityLtr: z.number().min(0).optional(),

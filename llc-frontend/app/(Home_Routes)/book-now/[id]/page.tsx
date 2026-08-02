@@ -241,11 +241,12 @@ export default function BookNow({
 
                 {selectedVehicle &&
                   estimatedFareResult?.pricingMode === "distance" && (
-                    <div className="flex justify-between items-center ">
-                      <span className="text-gray-600">Distance Per Price</span>
-                      <span className="font-semibold">
-                        $ {selectedVehicle?.distancePriceMultiplier}
-                      </span>
+                    <div className="text-xs text-gray-500 leading-relaxed">
+                      Distance pricing: ${selectedVehicle?.distancePriceMultiplier}
+                      /mile for the first 50 miles, then $
+                      {selectedVehicle?.distancePriceMultiplierBeyond ??
+                        selectedVehicle?.distancePriceMultiplier}
+                      /mile beyond 50 miles.
                     </div>
                   )}
               </div>
