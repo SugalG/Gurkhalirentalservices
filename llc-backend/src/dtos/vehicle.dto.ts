@@ -34,7 +34,7 @@ export const createVehicleTypeSchema = createValidationSchema({
     hourlyPriceMultiplier: z.number().min(0),
     maxOccupancy: z.number().min(0),
     maxStorageCapacityLtr: z.number().min(0).optional(),
-    maxSuitcaseCapacityKg: z.number().min(0).optional(),
+    maxSuitcaseCapacity: z.number().min(0).optional(),
     maxEstimatedDistanceCoverageMi: z.number().min(0).optional(),
     fuelType: z.enum(Object.values(VehicleFuelType) as [string, ...string[]]),
     availabilityStatus: z.boolean().optional(),
@@ -74,7 +74,7 @@ export const updateVehicleTypeSchema = createValidationSchema({
     hourlyPriceMultiplier: z.number().min(0).optional(),
     maxOccupancy: z.number().min(0).optional(),
     maxStorageCapacityLtr: z.number().min(0).optional(),
-    maxSuitcaseCapacityKg: z.number().min(0).optional(),
+    maxSuitcaseCapacity: z.number().min(0).optional(),
     maxEstimatedDistanceCoverageMi: z.number().min(0).optional(),
     fuelType: z
       .enum(Object.values(VehicleFuelType) as [string, ...string[]])

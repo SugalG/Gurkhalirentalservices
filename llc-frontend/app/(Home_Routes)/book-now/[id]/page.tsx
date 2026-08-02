@@ -880,17 +880,28 @@ export default function BookNow({
             </div>
 
             <p>
-              <strong>Category:</strong> {bookingState.vehicle?.fuelType}
-            </p>
-            <p className="sm:col-span-2">
-              <strong>Description:</strong> {bookingState.vehicle?.description}
+              <strong>Category:</strong> {bookingState.vehicle?.category}
             </p>
             <p>
-              <strong>Price:</strong> $
-              {bookingState.vehicle?.hourlyPriceMultiplier}
+              <strong>Fuel Type:</strong> {bookingState.vehicle?.fuelType}
             </p>
             <p>
               <strong>Passengers:</strong> {bookingState.vehicle?.maxOccupancy}
+            </p>
+            <p>
+              <strong>Max Suitcases:</strong>{" "}
+              {bookingState.vehicle?.maxSuitcaseCapacity}
+            </p>
+            <p>
+              <strong>Max Storage:</strong>{" "}
+              {bookingState.vehicle?.maxStorageCapacityLtr} L
+            </p>
+            <p>
+              <strong>Max Range:</strong>{" "}
+              {bookingState.vehicle?.maxEstimatedDistanceCoverageMi} mi
+            </p>
+            <p className="sm:col-span-2">
+              <strong>Description:</strong> {bookingState.vehicle?.description}
             </p>
             <p className="sm:col-span-2">
               <strong>Features:</strong>{" "}
