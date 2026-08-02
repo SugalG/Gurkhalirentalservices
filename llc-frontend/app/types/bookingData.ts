@@ -40,7 +40,7 @@ interface ICoordinates {
     features: string[];
     maxOccupancy: number;
     maxStorageCapacityLtr: number;
-    maxEstimatedDistanceCoverageKm: number;
+    maxEstimatedDistanceCoverageMi: number;
     distancePriceMultiplier: number;
     hourlyPriceMultiplier: number;
     fuelType: string;

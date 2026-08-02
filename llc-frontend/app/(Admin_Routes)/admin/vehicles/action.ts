@@ -46,7 +46,7 @@ export const filterVehicleTypes = async (params?: {
   availabilityStatus?: boolean;
   occupancy?: number;
   suitcaseCapacity?: number;
-  estimatedDistanceCoverageKm?: number;
+  estimatedDistanceCoverageMi?: number;
   page?: number;
   limit?: number;
 }) => {

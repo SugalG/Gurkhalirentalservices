@@ -101,8 +101,8 @@ export default function VehiclesPage() {
     maxSuitcaseCapacity: z.coerce.number().min(0, {
       message: "Max suitcase capacity must be at least 1.",
     }),
-    maxEstimatedDistanceCoverageKm: z.coerce.number().min(1, {
-      message: "Max estimated distance coverage must be at least 1 km.",
+    maxEstimatedDistanceCoverageMi: z.coerce.number().min(1, {
+      message: "Max estimated distance coverage must be at least 1 mile.",
     }),
     distancePriceMultiplier: z.coerce.number().min(0, {
       message: "Rate up to 50 mi must be a positive number.",
@@ -127,7 +127,7 @@ export default function VehiclesPage() {
     maxOccupancy: 0,
     maxStorageCapacityLtr: 0,
     maxSuitcaseCapacity: 0,
-    maxEstimatedDistanceCoverageKm: 0,
+    maxEstimatedDistanceCoverageMi: 0,
     distancePriceMultiplier: 4.5,
     distancePriceMultiplierBeyond: 5.5,
     hourlyPriceMultiplier: 0,
@@ -205,8 +205,8 @@ export default function VehiclesPage() {
           maxOccupancy: newVehicle.maxOccupancy,
           maxStorageCapacityLtr: newVehicle.maxStorageCapacityLtr,
           maxSuitcaseCapacity: newVehicle.maxSuitcaseCapacity,
-          maxEstimatedDistanceCoverageKm:
-            newVehicle.maxEstimatedDistanceCoverageKm,
+          maxEstimatedDistanceCoverageMi:
+            newVehicle.maxEstimatedDistanceCoverageMi,
           fuelType: newVehicle.fuelType,
           availabilityStatus: newVehicle.availabilityStatus,
         }
@@ -244,8 +244,8 @@ export default function VehiclesPage() {
         maxOccupancy: newVehicle.maxOccupancy,
         maxStorageCapacityLtr: newVehicle.maxStorageCapacityLtr,
         maxSuitcaseCapacity: newVehicle.maxSuitcaseCapacity,
-        maxEstimatedDistanceCoverageKm:
-          newVehicle.maxEstimatedDistanceCoverageKm,
+        maxEstimatedDistanceCoverageMi:
+          newVehicle.maxEstimatedDistanceCoverageMi,
         fuelType: newVehicle.fuelType,
         availabilityStatus: newVehicle.availabilityStatus,
       });
@@ -283,7 +283,7 @@ export default function VehiclesPage() {
       filters.estimatedDistanceCoverage &&
       filters.estimatedDistanceCoverage.trim() !== ""
     ) {
-      filteredParams.estimatedDistanceCoverageKm = parseInt(
+      filteredParams.estimatedDistanceCoverageMi = parseInt(
         filters.estimatedDistanceCoverage
       );
     }
@@ -515,10 +515,10 @@ export default function VehiclesPage() {
                   <div className="grid grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
-                      name="maxEstimatedDistanceCoverageKm"
+                      name="maxEstimatedDistanceCoverageMi"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Max Distance Coverage (km)</FormLabel>
+                          <FormLabel>Max Distance Coverage (mi)</FormLabel>
                           <FormControl>
                             <Input type="number" placeholder="400" {...field} />
                           </FormControl>
@@ -766,9 +766,9 @@ export default function VehiclesPage() {
                       <SelectValue placeholder="Distance Coverage" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="150">150 km</SelectItem>
-                      <SelectItem value="200">200 km</SelectItem>
-                      <SelectItem value="300">300 km</SelectItem>
+                      <SelectItem value="150">150 mi</SelectItem>
+                      <SelectItem value="200">200 mi</SelectItem>
+                      <SelectItem value="300">300 mi</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -913,8 +913,8 @@ export default function VehiclesPage() {
                 {selectedVehicle.maxSuitcaseCapacity}
               </p>
               <p>
-                <strong>Distance Coverage (km):</strong>{" "}
-                {selectedVehicle.maxEstimatedDistanceCoverageKm}
+                <strong>Distance Coverage (mi):</strong>{" "}
+                {selectedVehicle.maxEstimatedDistanceCoverageMi}
               </p>
               <p>
                 <strong>Distance Rate (up to 50 mi):</strong> ${" "}

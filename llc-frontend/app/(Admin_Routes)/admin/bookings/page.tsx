@@ -473,9 +473,9 @@ export default function Bookings() {
                               <>
                                 <div>
                                   <h4 className="text-sm font-medium text-muted-foreground mb-2">
-                                    Distance (KM)
+                                    Distance (mi)
                                   </h4>
-                                  <div>{booking.distanceKm} km</div>
+                                  <div>{booking.distanceMi} mi</div>
                                 </div>
                                 <div>
                                   <h4 className="text-sm font-medium text-muted-foreground mb-2">

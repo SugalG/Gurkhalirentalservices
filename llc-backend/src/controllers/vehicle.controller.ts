@@ -47,7 +47,7 @@ export async function getVehicleTypesController(
       maxSuitcaseCapacity: { $gte: filters.suitcaseCapacity },
     }),
     ...(filters.estimatedDistanceCoverageMi && {
-      estimatedDistanceCoverageMi: {
+      maxEstimatedDistanceCoverageMi: {
         $gte: filters.estimatedDistanceCoverageMi,
       },
     }),

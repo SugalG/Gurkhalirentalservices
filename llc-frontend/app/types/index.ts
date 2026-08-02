@@ -11,7 +11,7 @@ export interface Booking {
   status: "booked" | "in-progress" | "completed" | "cancelled";
   pricingMode: string;
   estimatedFare: number;
-  distanceKm: number;
+  distanceMi: number;
   durationHourly: number;
   specialRequests: string;
   meetAndGreet: boolean;
@@ -53,7 +53,7 @@ export interface Vehicle {
   features: string[];
   maxOccupancy: number;
   maxStorageCapacityLtr: number;
-  maxEstimatedDistanceCoverageKm: number;
+  maxEstimatedDistanceCoverageMi: number;
   distancePriceMultiplier: number;
   distancePriceMultiplierBeyond: number;
   hourlyPriceMultiplier: number;
@@ -77,7 +77,7 @@ export interface FinalVehicleType {
   maxOccupancy: number;
   maxStorageCapacityLtr: number;
   maxSuitcaseCapacity: number;
-  maxEstimatedDistanceCoverageKm: number;
+  maxEstimatedDistanceCoverageMi: number;
   fuelType: string;
   availabilityStatus: boolean;
 }
