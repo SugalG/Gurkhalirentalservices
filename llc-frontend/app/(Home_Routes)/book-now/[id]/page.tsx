@@ -897,7 +897,7 @@ export default function BookNow({
               {bookingState.vehicle?.maxStorageCapacityLtr} L
             </p>
             <p>
-              <strong>Max Range:</strong>{" "}
+              <strong>Range:</strong>{" "}
               {bookingState.vehicle?.maxEstimatedDistanceCoverageMi} mi
             </p>
             <p className="sm:col-span-2">

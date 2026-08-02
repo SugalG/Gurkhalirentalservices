@@ -102,7 +102,7 @@ export default function VehiclesPage() {
       message: "Max suitcase capacity must be at least 1.",
     }),
     maxEstimatedDistanceCoverageMi: z.coerce.number().min(1, {
-      message: "Max estimated distance coverage must be at least 1 mile.",
+      message: "Range must be at least 1 mile.",
     }),
     distancePriceMultiplier: z.coerce.number().min(0, {
       message: "Rate up to 50 mi must be a positive number.",
@@ -518,7 +518,7 @@ export default function VehiclesPage() {
                       name="maxEstimatedDistanceCoverageMi"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Max Distance Coverage (mi)</FormLabel>
+                          <FormLabel>Range (mi)</FormLabel>
                           <FormControl>
                             <Input type="number" placeholder="400" {...field} />
                           </FormControl>
@@ -763,7 +763,7 @@ export default function VehiclesPage() {
                     }
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Distance Coverage" />
+                      <SelectValue placeholder="Range" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="150">150 mi</SelectItem>
@@ -913,7 +913,7 @@ export default function VehiclesPage() {
                 {selectedVehicle.maxSuitcaseCapacity}
               </p>
               <p>
-                <strong>Distance Coverage (mi):</strong>{" "}
+                <strong>Range (mi):</strong>{" "}
                 {selectedVehicle.maxEstimatedDistanceCoverageMi}
               </p>
               <p>
