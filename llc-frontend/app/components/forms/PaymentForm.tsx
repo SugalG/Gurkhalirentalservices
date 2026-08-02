@@ -115,8 +115,8 @@ export function PaymentForm({
         city: finalBooking.paymentDetails.city,
         postalCode: finalBooking.paymentDetails.zipCode,
         country: finalBooking.paymentDetails.country,
-        affiliation: "Hello",
-        addressLine_2: finalBooking.paymentDetails.address,
+        affiliation: "",
+        addressLine_2: "",
       },
       bookingDetails: {
         vehicleType: selectedVehicleId || "",
