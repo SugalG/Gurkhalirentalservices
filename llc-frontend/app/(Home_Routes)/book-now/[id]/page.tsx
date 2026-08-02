@@ -909,7 +909,7 @@ export default function BookNow({
                 )}
                 <div>
                   <p className="text-xs text-gray-500">Your Chauffeur</p>
-                  <p className="font-semibold">
+                  <p className="font-semibold text-gray-900">
                     {bookingState.vehicle.driverName}
                   </p>
                 </div>
