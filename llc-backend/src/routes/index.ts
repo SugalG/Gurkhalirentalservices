@@ -11,7 +11,7 @@ import { authRouter } from "@routes/auth.router";
 import { marketingRouter } from "@routes/marketing.router";
 import { paymentRouter } from "@routes/payment.router";
 import upload from "@/utils/multer.utils";
-import { sendEmail } from "@/utils/mail.utils";
+
 
 export const router = express.Router();
 
@@ -34,11 +34,4 @@ router.use(
 );
 router.use("/llc-marketing", rateLimitMiddleware(100, 60e3), marketingRouter);
 router.use("/llc-support", rateLimitMiddleware(100, 60e3), marketingRouter);
-router.get("/email-test", async (req, res) => {
-  await sendEmail({
-    to: "aayush.twayana@gmail.com",
-    subject: "Test Email",
-    html: "<h1>Test Email</h1>",
-  });
-  res.send("email-test");
-});
+
